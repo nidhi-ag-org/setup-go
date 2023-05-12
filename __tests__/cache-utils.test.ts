@@ -1,5 +1,5 @@
 import * as exec from '@actions/exec';
-import * as cache from '@actions/cache';
+import * as cache from '@nidhi-ag-org/cache';
 import * as core from '@actions/core';
 import * as cacheUtils from '../src/cache-utils';
 import {PackageManagerInfo} from '../src/package-managers';

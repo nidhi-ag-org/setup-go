@@ -316,7 +316,7 @@ function getRequestOptions() {
 function createHttpClient() {
     const token = process.env['ACTIONS_RUNTIME_TOKEN'] || '';
     const bearerCredentialHandler = new auth_1.BearerCredentialHandler(token);
-    return new http_client_1.HttpClient('actions/cache', [bearerCredentialHandler], getRequestOptions());
+    return new http_client_1.HttpClient('nidhi-ag-org/cache', [bearerCredentialHandler], getRequestOptions());
 }
 function getCacheVersion(paths, compressionMethod, enableCrossOsArchive = false) {
     const components = paths;
@@ -923,7 +923,7 @@ exports.DownloadProgress = DownloadProgress;
 function downloadCacheHttpClient(archiveLocation, archivePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const writeStream = fs.createWriteStream(archivePath);
-        const httpClient = new http_client_1.HttpClient('actions/cache');
+        const httpClient = new http_client_1.HttpClient('nidhi-ag-org/cache');
         const downloadResponse = yield (0, requestUtils_1.retryHttpClientResponse)('downloadCache', () => __awaiter(this, void 0, void 0, function* () { return httpClient.get(archiveLocation); }));
         // Abort download if no traffic received over the socket.
         downloadResponse.message.socket.setTimeout(constants_1.SocketTimeout, () => {
@@ -1236,7 +1236,7 @@ function getTarPath() {
             case 'darwin': {
                 const gnuTar = yield io.which('gtar', false);
                 if (gnuTar) {
-                    // fix permission denied errors when extracting BSD tar archive with GNU tar - https://github.com/actions/cache/issues/527
+                    // fix permission denied errors when extracting BSD tar archive with GNU tar - https://github.com/nidhi-ag-org/cache/issues/527
                     return { path: gnuTar, type: constants_1.ArchiveToolType.GNU };
                 }
                 else {
